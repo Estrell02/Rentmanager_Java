@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="epf.AppTest" time="0.051" tests="1" errors="0" skipped="0" failures="0">
+  <properties>
+    <property name="java.specification.version" value="17"/>
+    <property name="sun.cpu.isalist" value="amd64"/>
+    <property name="sun.jnu.encoding" value="Cp1252"/>
+    <property name="java.class.path" value="E:\Cours\MIN_s8\java\rentmanager\rentmanager\target\test-classes;E:\Cours\MIN_s8\java\rentmanager\rentmanager\target\classes;C:\Users\Estrella\.m2\repository\junit\junit\4.11\junit-4.11.jar;C:\Users\Estrella\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\Estrella\.m2\repository\com\h2database\h2\1.4.200\h2-1.4.200.jar;C:\Users\Estrella\.m2\repository\javax\servlet\javax.servlet-api\4.0.1\javax.servlet-api-4.0.1.jar;C:\Users\Estrella\.m2\repository\javax\annotation\javax.annotation-api\1.3.2\javax.annotation-api-1.3.2.jar;C:\Users\Estrella\.m2\repository\javax\servlet\jstl\1.2\jstl-1.2.jar;"/>
+    <property name="java.vm.vendor" value="Amazon.com Inc."/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="user.variant" value=""/>
+    <property name="java.vendor.url" value="https://aws.amazon.com/corretto/"/>
+    <property name="user.timezone" value="GMT+01:00"/>
+    <property name="os.name" value="Windows 10"/>
+    <property name="java.vm.specification.version" value="17"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="user.country" value="FR"/>
+    <property name="sun.boot.library.path" value="C:\Users\Estrella\.jdks\corretto-17.0.10\bin"/>
+    <property name="sun.java.command" value="C:\Users\Estrella\AppData\Local\Temp\surefire15370544812693127115\surefirebooter12505035051506923102.jar C:\Users\Estrella\AppData\Local\Temp\surefire15370544812693127115 2024-03-04T14-42-06_371-jvmRun1 surefire4990419950249105412tmp surefire_02446264255123000470tmp"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="surefire.test.class.path" value="E:\Cours\MIN_s8\java\rentmanager\rentmanager\target\test-classes;E:\Cours\MIN_s8\java\rentmanager\rentmanager\target\classes;C:\Users\Estrella\.m2\repository\junit\junit\4.11\junit-4.11.jar;C:\Users\Estrella\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\Estrella\.m2\repository\com\h2database\h2\1.4.200\h2-1.4.200.jar;C:\Users\Estrella\.m2\repository\javax\servlet\javax.servlet-api\4.0.1\javax.servlet-api-4.0.1.jar;C:\Users\Estrella\.m2\repository\javax\annotation\javax.annotation-api\1.3.2\javax.annotation-api-1.3.2.jar;C:\Users\Estrella\.m2\repository\javax\servlet\jstl\1.2\jstl-1.2.jar;"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="C:\Users\Estrella"/>
+    <property name="user.language" value="fr"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.version.date" value="2024-01-16"/>
+    <property name="java.home" value="C:\Users\Estrella\.jdks\corretto-17.0.10"/>
+    <property name="file.separator" value="\"/>
+    <property name="basedir" value="E:\Cours\MIN_s8\java\rentmanager\rentmanager"/>
+    <property name="java.vm.compressedOopsMode" value="32-bit"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="surefire.real.class.path" value="C:\Users\Estrella\AppData\Local\Temp\surefire15370544812693127115\surefirebooter12505035051506923102.jar"/>
+    <property name="user.script" value=""/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="java.runtime.version" value="17.0.10+7-LTS"/>
+    <property name="user.name" value="Estrella"/>
+    <property name="path.separator" value=";"/>
+    <property name="os.version" value="10.0"/>
+    <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
+    <property name="file.encoding" value="Cp1252"/>
+    <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
+    <property name="java.vendor.version" value="Corretto-17.0.10.7.1"/>
+    <property name="localRepository" value="C:\Users\Estrella\.m2\repository"/>
+    <property name="java.vendor.url.bug" value="https://github.com/corretto/corretto-17/issues/"/>
+    <property name="java.io.tmpdir" value="C:\Users\Estrella\AppData\Local\Temp\"/>
+    <property name="idea.version" value="2023.3.2"/>
+    <property name="java.version" value="17.0.10"/>
+    <property name="user.dir" value="E:\Cours\MIN_s8\java\rentmanager\rentmanager"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="sun.os.patch.level" value=""/>
+    <property name="native.encoding" value="Cp1252"/>
+    <property name="java.library.path" value="C:\Users\Estrella\.jdks\corretto-17.0.10\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files\Java\vraijdk\bin;C:\windows\system32;C:\ProgramData\chocolatey\bin;C:\Users\Estrella\Downloads;C:\Program Files\nodejs\;E:\pmd-bin-7.0.0-rc1\bin;C:\chromedriver_win32;C:\sablecc-3.7\bin;C:\Users\Estrella\AppData\Roaming\Python\Scripts;C:\Program Files\Git\cmd;C:\Program Files\Go\bin;C:\Users\Estrella\AppData\Local\Programs\Python\Python312\Scripts\;C:\Users\Estrella\AppData\Local\Programs\Python\Python312\;C:\Users\Estrella\AppData\Local\Programs\Python\Python310\Scripts\;C:\Users\Estrella\AppData\Local\Programs\Python\Python310\;C:\Users\Estrella\AppData\Local\Programs\Microsoft VS Code\bin;C:\Program Files\Java\vraijdk;E:\software\installed_app\PyCharm Community Edition 2022.3.1\bin;;C:\windows\system32;C:\Users\Estrella\AppData\Local\Google\Cloud SDK\google-cloud-sdk\bin;C:\Users\Estrella\AppData\Roaming\npm;C:\pmd-bin-7.0.0-rc1\bin;;C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2023.3.2\bin;;C:\Users\Estrella\go\bin;."/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
+    <property name="java.vendor" value="Amazon.com Inc."/>
+    <property name="java.vm.version" value="17.0.10+7-LTS"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="java.class.version" value="61.0"/>
+  </properties>
+  <testcase name="shouldAnswerWithTrue" classname="epf.AppTest" time="0.002"/>
+</testsuite>
