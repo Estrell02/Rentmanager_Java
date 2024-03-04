@@ -34,13 +34,14 @@
                                     <!--<th>Propriétaire</th>-->
                                     <th>Action</th>
                                 </tr>
-                                <tr>
+
 
                                 <c:forEach items="${vehicles}" var="vehicle">
-                                    <td>${vehicle.id}.</td>
-                                    <td>${vehicle.constructeur}</td>
-                                    <td>${vehicle.modele}</td>
-                                    <td>${vehicle.nb_places}</td>
+                                <tr>
+                                    <td>${vehicle.id()}.</td>
+                                    <td>${vehicle.constructeur()}</td>
+                                    <td>${vehicle.modele()}</td>
+                                    <td>${vehicle.nb_places()}</td>
 
 
                                     <td>
@@ -54,8 +55,9 @@
                                             <i class="fa fa-trash"></i>
                                         </a>
                                     </td>
+
                                 </tr>
-                                </c:forEach>
+                               </c:forEach>
                             </table>
                         </div>
                         <!-- /.box-body -->

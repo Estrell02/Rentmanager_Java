@@ -29,7 +29,7 @@ public class VehicleListServlet extends HttpServlet {
             request.setAttribute("vehicleCount", vehicleCount);
             this.getServletContext().getRequestDispatcher("/WEB-INF/views/vehicles/list.jsp").forward(request, response);
         } catch (Exception e) {
-            throw new ServletException("Erreur lors de la récupération des véhicules", e);
+            throw new ServletException( e);
         }
     }
 }

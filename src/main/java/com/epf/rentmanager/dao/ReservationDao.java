@@ -36,10 +36,10 @@ public class ReservationDao {
         try (Connection connection = ConnectionManager.getConnection();
              PreparedStatement ps = connection.prepareStatement(CREATE_RESERVATION_QUERY, Statement.RETURN_GENERATED_KEYS)) {
 
-            ps.setLong(1,reservation.getClient_id() );
-            ps.setLong(2, reservation.getVehicle_id());
-            ps.setDate(3, Date.valueOf(reservation.getDebut()));
-            ps.setDate(4, Date.valueOf(reservation.getFin()));
+            ps.setLong(1,reservation.client_id() );
+            ps.setLong(2, reservation.vehicle_id());
+            ps.setDate(3, Date.valueOf(reservation.debut()));
+            ps.setDate(4, Date.valueOf(reservation.fin()));
             ps.executeUpdate();
 
             try (ResultSet generatedKeys = ps.getGeneratedKeys()) {
@@ -77,8 +77,10 @@ public class ReservationDao {
 
 			while (rs.next()) {
 				reservations.add(new Reservation(
+
 						rs.getInt("id"),
 						rs.getLong("vehicle_id"),
+						clientId,
 						rs.getDate("debut").toLocalDate(),
 						rs.getDate("fin").toLocalDate()
 				));
@@ -101,6 +103,7 @@ public class ReservationDao {
 			while (rs.next()) {
 				reservations.add(new Reservation(
 						rs.getInt("id"),
+						vehicleId,
 						rs.getLong("client_id"),
 						rs.getDate("debut").toLocalDate(),
 						rs.getDate("fin").toLocalDate()

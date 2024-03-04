@@ -30,9 +30,9 @@ public class VehicleDao {
 		try (Connection connection = ConnectionManager.getConnection();
 			 PreparedStatement ps = connection.prepareStatement(CREATE_VEHICLE_QUERY, Statement.RETURN_GENERATED_KEYS)) {
 
-			ps.setString(1,vehicle.getConstructeur() );
-			ps.setString(2,vehicle.getModele() );
-			ps.setInt(3, vehicle.getNb_places());
+			ps.setString(1,vehicle.constructeur() );
+			ps.setString(2,vehicle.modele() );
+			ps.setInt(3, vehicle.nb_places());
 			ps.execute();
 
 			try (ResultSet generatedKeys = ps.getGeneratedKeys()) {

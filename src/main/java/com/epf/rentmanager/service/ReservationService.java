@@ -26,7 +26,7 @@ public class ReservationService {
     }
 
     public long create(Reservation reservation) throws ServiceException, DaoException {
-        if (reservation.getClient_id()==null || reservation.getVehicle_id()==null) {
+        if (reservation.client_id()==null || reservation.vehicle_id()==null) {
             throw new ServiceException(" client_id et vehicle_id ne peuvent pas être vides.");
         }
 

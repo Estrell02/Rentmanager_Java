@@ -26,10 +26,10 @@ public class ClientService {
 	}
 
 	public long create(Client client) throws ServiceException, DaoException {
-		if (client.getNom().isEmpty() || client.getPrenom().isEmpty()) {
+		if (client.nom().isEmpty() || client.prenom().isEmpty()) {
 			throw new ServiceException("Le nom et le prénom du client ne peuvent pas être vides.");
 		}
-		client.setNom(client.getNom().toUpperCase());
+//		client.nom(client.nom().toUpperCase());
 		return clientDao.create(client);
 	}
 

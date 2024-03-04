@@ -35,10 +35,10 @@ public class ClientDao {
 	public long create(Client client) throws DaoException {
 		try (Connection connection = ConnectionManager.getConnection();
 			 PreparedStatement ps = connection.prepareStatement(CREATE_CLIENT_QUERY, Statement.RETURN_GENERATED_KEYS)) {
-			ps.setString(1,client.getNom() );
-			ps.setString(2, client.getPrenom());
-			ps.setString(3, client.getEmail());
-			ps.setDate(4, Date.valueOf(client.getNaissance()));
+			ps.setString(1,client.nom() );
+			ps.setString(2, client.prenom());
+			ps.setString(3, client.email());
+			ps.setDate(4, Date.valueOf(client.naissance()));
 			ps.executeUpdate();
 
 			try (ResultSet generatedKeys = ps.getGeneratedKeys()) {
