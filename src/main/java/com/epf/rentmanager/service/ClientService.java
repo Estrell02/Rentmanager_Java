@@ -8,49 +8,45 @@ import com.epf.rentmanager.exception.DaoException;
 import com.epf.rentmanager.exception.ServiceException;
 import com.epf.rentmanager.model.Client;
 import com.epf.rentmanager.utils.IOUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class ClientService {
 
-	private ClientDao clientDao;
-	public static ClientService instance;
+    private ClientDao clientDao;
 
-	private ClientService() {
-		this.clientDao = ClientDao.getInstance();
-	}
+    @Autowired
+    private ClientService(ClientDao clientDao){
+        this.clientDao = clientDao;
+    }
 
-	public static ClientService getInstance() {
-		if (instance == null) {
-			instance = new ClientService();
-		}
-		return instance;
-	}
+    public long create(Client client) throws ServiceException, DaoException {
+        if (client.nom().isEmpty() || client.prenom().isEmpty()) {
+            throw new ServiceException("Le nom et le prénom du client ne peuvent pas être vides.");
+        }
 
-	public long create(Client client) throws ServiceException, DaoException {
-		if (client.nom().isEmpty() || client.prenom().isEmpty()) {
-			throw new ServiceException("Le nom et le prénom du client ne peuvent pas être vides.");
-		}
-//		client.nom(client.nom().toUpperCase());
-		return clientDao.create(client);
-	}
+        return clientDao.create(client);
+    }
 
-	public Client findById(long id) throws ServiceException, DaoException {
+    public Client findById(long id) throws ServiceException, DaoException {
 
-		return clientDao.findById(id);
-	}
+        return clientDao.findById(id);
+    }
 
-	public List<Client> findAll() throws ServiceException, DaoException {
-		return clientDao.findAll();
-	}
+    public List<Client> findAll() throws ServiceException, DaoException {
+        return clientDao.findAll();
+    }
 
 
-	public void delete(long id) throws ServiceException, DaoException {
-		try {
-			clientDao.delete(id);
-		} catch (DaoException e) {
-			throw new ServiceException( e.getMessage());
-		}
-	}
-	public int count() throws ServiceException, DaoException {
-		return clientDao.count();
-	}
+    public long delete(Client client) throws ServiceException {
+        try {
+            return clientDao.delete(client);
+        } catch (DaoException e) {
+            throw new ServiceException();
+        }
+    }
+    public int count() throws ServiceException, DaoException {
+        return clientDao.count();
+    }
 }

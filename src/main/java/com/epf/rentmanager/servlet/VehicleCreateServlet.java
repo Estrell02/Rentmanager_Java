@@ -10,15 +10,20 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.epf.rentmanager.service.VehicleService;
 import com.epf.rentmanager.model.Vehicle;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 @WebServlet("/cars/create")
 public class VehicleCreateServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
+    @Autowired
     private VehicleService vehicleService;
 
-    public VehicleCreateServlet() {
-        this.vehicleService = VehicleService.getInstance();
+    @Override
+    public void init() throws ServletException {
+        super.init();
+        SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -37,7 +42,7 @@ public class VehicleCreateServlet extends HttpServlet {
             vehicleService.create(vehicle);
             response.sendRedirect("/rentmanager/cars");
         } catch (Exception e) {
-            throw new ServletException("Erreur lors de la création du véhicule", e);
+            throw new ServletException(e.getMessage());
         }
     }
 }

@@ -2,56 +2,103 @@ package com.epf.rentmanager.service;
 
 import com.epf.rentmanager.dao.ClientDao;
 import com.epf.rentmanager.dao.ReservationDao;
+import com.epf.rentmanager.dao.VehicleDao;
+
 import com.epf.rentmanager.exception.DaoException;
 import com.epf.rentmanager.exception.ServiceException;
 import com.epf.rentmanager.model.Client;
 import com.epf.rentmanager.model.Reservation;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class ReservationService {
 
-    public static ReservationService instance;
     private ReservationDao reservationDao;
 
-    private ReservationService() {
-        this.reservationDao = reservationDao.getInstance();
+    @Autowired
+    private ReservationService(ReservationDao reservationDao) {
+        this.reservationDao = reservationDao;
     }
 
-    public static ReservationService getInstance() {
-        if (instance == null) {
-            instance = new ReservationService();
-        }
-        return instance;
-    }
-
-    public long create(Reservation reservation) throws ServiceException, DaoException {
-        if (reservation.client_id()==null || reservation.vehicle_id()==null) {
-            throw new ServiceException(" client_id et vehicle_id ne peuvent pas être vides.");
-        }
-
-        return reservationDao.create(reservation);
-    }
-
-    public List<Reservation> findResaByClientId(long id) throws ServiceException, DaoException {
-
-        return reservationDao.findResaByClientId(id);
-    }
-    public List<Reservation> findResaByVehicleId(long id) throws ServiceException, DaoException {
-
-        return reservationDao.findResaByVehicleId(id);
-    }
-
-    public List<Reservation> findAll() throws ServiceException, DaoException {
-        return reservationDao.findAll();
-    }
-
-
-    public void delete(int id) throws ServiceException, DaoException {
+    public long create(Reservation reservation) throws ServiceException {
         try {
-            reservationDao.delete(id);
+            return reservationDao.create(reservation);
         } catch (DaoException e) {
-            throw new ServiceException( e.getMessage());
+            throw new ServiceException();
+        }
+    }
+
+    public long delete(Reservation reservation) throws ServiceException {
+        try {
+            return reservationDao.delete(reservation);
+        } catch (DaoException e) {
+            throw new ServiceException();
+        }
+    }
+
+    public List<Reservation> findResaByClientId(long clientId) throws ServiceException {
+        try {
+            return reservationDao.findResaByClientId(clientId);
+        } catch (DaoException e) {
+            throw new ServiceException();
+        }
+    }
+
+    public List<Reservation> findResaByVehicleId(long vehicleId) throws ServiceException {
+        try {
+            return reservationDao.findResaByVehicleId(vehicleId);
+        } catch (DaoException e) {
+            throw new ServiceException();
+        }
+    }
+
+    public List<Reservation> findAll() throws ServiceException {
+        try {
+            return reservationDao.findAll();
+        } catch (DaoException e) {
+            throw new ServiceException();
+        }
+    }
+
+    public int count() throws ServiceException {
+        try {
+            return reservationDao.count();
+        } catch (DaoException e) {
+            throw new ServiceException();
+        }
+    }
+
+    public int countByClientId(long clientId) throws ServiceException {
+        try {
+            return reservationDao.countByClientId(clientId);
+        } catch (DaoException e) {
+            throw new ServiceException();
+        }
+    }
+
+    public int countVehiclesByClientId(long clientId) throws ServiceException {
+        try {
+            return reservationDao.countVehiclesByClientId(clientId);
+        } catch (DaoException e) {
+            throw new ServiceException();
+        }
+    }
+
+    public Reservation findById(long id) throws ServiceException {
+        try {
+            return reservationDao.findById(id);
+        } catch (DaoException e) {
+            throw new ServiceException();
+        }
+    }
+
+    public void update(Reservation reservation) throws ServiceException {
+        try {
+            reservationDao.update(reservation);
+        } catch (DaoException e) {
+            throw new ServiceException();
         }
     }
 }

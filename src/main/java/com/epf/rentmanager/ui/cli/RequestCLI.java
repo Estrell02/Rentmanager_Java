@@ -1,6 +1,7 @@
 package com.epf.rentmanager.ui.cli;
 
 
+import com.epf.rentmanager.configuration.AppConfiguration;
 import com.epf.rentmanager.exception.DaoException;
 import com.epf.rentmanager.exception.ServiceException;
 import com.epf.rentmanager.model.Client;
@@ -10,6 +11,8 @@ import com.epf.rentmanager.service.ClientService;
 import com.epf.rentmanager.service.ReservationService;
 import com.epf.rentmanager.service.VehicleService;
 import com.epf.rentmanager.utils.IOUtils;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
@@ -18,11 +21,18 @@ import java.util.Scanner;
 
 public class RequestCLI {
 
-    private static final ClientService clientService = ClientService.getInstance();
-    private static final VehicleService vehicleService = VehicleService.getInstance();
-    private static final ReservationService reservationService = ReservationService.getInstance();
+    private static ClientService clientService;
+    private  static VehicleService vehicleService;
+    private static  ReservationService reservationService;
 
-    public static void main(String[] args) {
+
+
+    public static void main(String[] args) throws ServiceException, DaoException {
+        ApplicationContext context = new AnnotationConfigApplicationContext(AppConfiguration.class);
+        clientService = context.getBean(ClientService.class);
+        vehicleService = context.getBean(VehicleService.class);
+        reservationService = context.getBean(ReservationService.class);
+
         boolean exit = false;
         while (!exit) {
             IOUtils.print("Menu:");
@@ -37,7 +47,7 @@ public class RequestCLI {
             IOUtils.print("9. Lister toutes les réservations d'un client");
             IOUtils.print("10. Lister toutes les réservations d'un véhicule");
             IOUtils.print("11. Supprimer une réservation");
-            IOUtils.print("7. Quitter");
+            IOUtils.print("12. Quitter");
             int choice = IOUtils.readInt("Veuillez choisir une option: ");
 
             switch (choice) {
@@ -93,23 +103,33 @@ public class RequestCLI {
         LocalDate dateNaissance = IOUtils.readDate("Date de naissance (dd/MM/yyyy): ", true);
 
         try {
-            clientService.create(new Client(0, nom, prenom, email, dateNaissance));
-            IOUtils.print("Client créé avec succès.");
-        } catch (ServiceException | DaoException e) {
+
+            long idClient = clientService.create(new Client(nom, prenom, email, dateNaissance));
+            IOUtils.print(String.format("Client créé avec l'id %d", idClient));
+
+//            clientService.create(new Client(0, nom, prenom, email, dateNaissance));
+//            IOUtils.print("Client créé avec succès.");
+        } catch (ServiceException e) {
             IOUtils.print("Erreur lors de la création du client: " + e);
+        } catch (DaoException e) {
+            throw new RuntimeException(e);
         }
     }
 
-    private static void listAllClients() {
-        try {
-            List<Client> clients = clientService.findAll();
-            IOUtils.print("Liste des clients:");
-            for (Client client : clients) {
-                IOUtils.print(client.toString());
-            }
-        } catch (ServiceException | DaoException e) {
-            IOUtils.print("Erreur lors de la récupération des clients: " + e.getMessage());
+    private static void listAllClients() throws ServiceException, DaoException {
+        List<Client> clients = clientService.findAll();
+        IOUtils.print("Liste des clients:");
+        for (Client client : clients) {
+            IOUtils.print(client.toString());
         }
+//        IOUtils.print("Liste des clients");
+//        try {
+//            clientService.findAll().forEach(client -> IOUtils.print(client.toString()));
+//        } catch (ServiceException e) {
+//            IOUtils.print("Erreur lors de la récupération des clients");
+//        } catch (DaoException e) {
+//            throw new RuntimeException(e);
+//        }
     }
 
     private static void createVehicle() {
@@ -118,8 +138,10 @@ public class RequestCLI {
         String modele=IOUtils.readString("Modele:", true);
 
         try {
-            vehicleService.create(new Vehicle(0, constructeur,modele, nb_places));
-            IOUtils.print("Véhicule créé avec succès.");
+
+            long idVehicle = vehicleService.create(new Vehicle(0,constructeur, modele, nb_places));
+            IOUtils.print(String.format("Véhicule créé avec l'id %d", idVehicle));
+
         } catch (ServiceException | DaoException e) {
             IOUtils.print("Erreur lors de la création du véhicule: " + e);
         }
@@ -140,20 +162,20 @@ public class RequestCLI {
     private static void deleteClient() {
         long id = IOUtils.readInt("ID du client à supprimer: ");
         try {
-            clientService.delete(id);
+            clientService.delete(new Client(id));
             IOUtils.print("Client supprimé avec succès.");
-        } catch (ServiceException | DaoException e) {
+        } catch (ServiceException e) {
             IOUtils.print("Erreur lors de la suppression du client: " + e);
         }
     }
 
-    private static void deleteVehicle() {
+    private static void deleteVehicle() throws ServiceException {
         int id = IOUtils.readInt("ID du vehicule à supprimer: ");
 
         try {
-            vehicleService.delete(id);
+            vehicleService.delete(new Vehicle(id));
             IOUtils.print("Vehicule supprimé avec succès.");
-        } catch (ServiceException | DaoException e) {
+        } catch (ServiceException e) {
             IOUtils.print("Erreur lors de la suppression du véhicule: " + e.getMessage());
         }
 
@@ -176,25 +198,24 @@ public class RequestCLI {
     private static void listAllReservations() {
         try {
             List<Reservation> reservations = reservationService.findAll();
-            IOUtils.print("Liste des réservations:");
+            IOUtils.print("Liste :");
             for (Reservation reservation : reservations) {
                 IOUtils.print(reservation.toString());
             }
-        } catch (Exception e) {
-            IOUtils.print("Erreur lors de la récupération des réservations: " + e.getMessage());
+        } catch (ServiceException e) {
+            IOUtils.print("Erreur lors de la récupération des véhicules: " + e);
         }
+
     }
 
     private static void listReservationsByClient() {
         long clientId = IOUtils.readInt("ID du client: ");
+        IOUtils.print("Liste des réservations d'un client");
+        long id = IOUtils.readInt("Id du client : ");
         try {
-            List<Reservation> reservations = reservationService.findResaByClientId(clientId);
-            IOUtils.print("Réservations pour le client " + clientId + ":");
-            for (Reservation reservation : reservations) {
-                IOUtils.print(reservation.toString());
-            }
-        } catch (Exception e) {
-            IOUtils.print("Erreur lors de la récupération des réservations: " + e.getMessage());
+            reservationService.findResaByClientId(id).forEach(reservation -> IOUtils.print(reservation.toString()));
+        } catch (ServiceException e) {
+            IOUtils.print("Erreur lors de la récupération des réservations");
         }
     }
 
@@ -211,13 +232,23 @@ public class RequestCLI {
         }
     }
 
-    private static void deleteReservation() {
+    private static void deleteReservation() throws ServiceException {
         int reservationId = IOUtils.readInt("ID de la réservation à supprimer: ");
+        Reservation reservation=reservationService.findById(reservationId);
         try {
-            reservationService.delete(reservationId);
+            reservationService.delete(reservation);
             IOUtils.print("Réservation supprimée avec succès.");
         } catch (Exception e) {
             IOUtils.print("Erreur lors de la suppression de la réservation: " + e.getMessage());
         }
     }
-}
+    public void findByIdReservation() {
+        IOUtils.print("Recherche d'une réservation");
+        long id = IOUtils.readInt("Id de la réservation : ");
+        try {
+            Reservation reservation = reservationService.findById(id);
+            IOUtils.print(reservation.toString());
+        } catch (ServiceException e) {
+            IOUtils.print("Erreur lors de la récupération de la réservation");
+        }
+}}

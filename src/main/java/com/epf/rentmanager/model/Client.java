@@ -3,16 +3,14 @@ package com.epf.rentmanager.model;
 import java.sql.Date;
 import java.time.LocalDate;
 
-public record Client (int id, String nom, String prenom, String email, LocalDate naissance){
+public record Client (long id, String nom, String prenom, String email, LocalDate naissance){
 
-    public Client(){this(0,null, null,null, null );}
+    public Client(String nom, String prenom, String email, LocalDate naissance) {
+        this(0, nom, prenom, email, naissance);
+    }
 
-    public Client(int id, String nom, String prenom, String email, LocalDate naissance) {
-        this.id = id;
-        this.nom = nom;
-        this.prenom = prenom;
-        this.email = email;
-        this.naissance = naissance;
+    public Client(long id) {
+        this(id, "", "", "", LocalDate.now());
     }
 
     @Override
