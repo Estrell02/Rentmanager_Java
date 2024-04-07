@@ -40,6 +40,7 @@ public class VehicleEditServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
+            long id= Long.parseLong(request.getParameter("id"));
             String constructeur = request.getParameter("manufacturer");
             String modele = request.getParameter("modele");
             int seats = Integer.parseInt(request.getParameter("seats"));
@@ -48,14 +49,14 @@ public class VehicleEditServlet extends HttpServlet {
             if (seats < 2 || seats > 9)
                 throw new ServletException("Le nombre de places doit être compris entre 2 et 9");
 
-            vehicleService.update(new Vehicle(0,
+            vehicleService.update(new Vehicle(id,
                     constructeur,
                     modele,
                     seats
             ));
+            response.sendRedirect(request.getContextPath() + "/cars");
         } catch (ServiceException e) {
             throw new ServletException();
         }
-        response.sendRedirect(request.getContextPath() + "/cars");
     }
 }

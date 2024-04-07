@@ -1,4 +1,4 @@
-package com.epf.rentmanager.servlet.vehicles;
+package com.epf.rentmanager.servlet;
 
 
 import com.epf.rentmanager.model.Vehicle;

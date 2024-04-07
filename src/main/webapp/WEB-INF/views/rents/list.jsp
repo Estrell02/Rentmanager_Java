@@ -35,7 +35,7 @@
                                     <th>Action</th>
                                 </tr>
 
-                                  <c:forEach items="${reservations}" var="reservation">
+                                  <c:forEach items="${reservations}"  var="reservation">
                                   <tr>
 
                                                                         <td>${reservation.id()}</td>
@@ -49,7 +49,7 @@
                                                                                 <i class="fa fa-play"></i>
                                                                             </a>
                                                                             <a class="btn btn-success"
-                                                                               href="${pageContext.request.contextPath}/rents/update?id=${reservation.id()}">
+                                                                               href="${pageContext.request.contextPath}/rents/edit?id=${reservation.id()}">
                                                                                 <i class="fa fa-edit"></i>
                                                                             </a>
                                                                             <a class="btn btn-danger"

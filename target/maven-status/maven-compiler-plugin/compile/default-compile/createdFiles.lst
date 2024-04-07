@@ -25,9 +25,9 @@ com\epf\rentmanager\servlet\VehicleEditServlet.class
 com\epf\rentmanager\servlet\ReservationDeleteServlet.class
 com\epf\rentmanager\persistence\FillDatabase.class
 com\epf\rentmanager\servlet\ReservationDetailsServlet.class
+com\epf\rentmanager\servlet\VehicleDeleteServlet.class
 com\epf\rentmanager\servlet\VehicleListServlet.class
 com\epf\rentmanager\ui\cli\RequestCLI.class
 com\epf\rentmanager\service\ClientService.class
-com\epf\rentmanager\servlet\vehicles\VehicleDeleteServlet.class
 com\epf\rentmanager\dao\VehicleDao.class
 com\epf\rentmanager\model\Client.class

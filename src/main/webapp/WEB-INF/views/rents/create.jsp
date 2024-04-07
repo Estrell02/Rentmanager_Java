@@ -53,7 +53,7 @@
                                     <label for="begin" class="col-sm-2 control-label">Date de debut</label>
 
                                     <div class="col-sm-10">
-                                        <input type="date" class="form-control" id="begin" name="begin" required
+                                        <input type="date" class="form-control" id="begin" name="begin" placeholder="jj/MM/AAAA" required
                                                >
                                     </div>
                                 </div>
@@ -61,7 +61,7 @@
                                     <label for="end" class="col-sm-2 control-label">Date de fin</label>
 
                                     <div class="col-sm-10">
-                                        <input type="date" class="form-control" id="end" name="end" required
+                                        <input type="date" class="form-control" id="end" name="end" placeholder="jj/MM/AAAA" required
                                                >
                                                <c:if test="${not empty requestScope.Error}">
                                                                                                    <p style="color: red;"><c:out value="${requestScope.Error}" /></p>

@@ -31,7 +31,7 @@ public class ReservationDao {
 	private static final String COUNT_VEHICLES_BY_CLIENT_QUERY = "SELECT COUNT(DISTINCT(vehicle_id)) FROM Reservation WHERE client_id=?;";
 	private static final String FIND_BY_RESERVATION_ID_QUERY =
 			"""
-            SELECT Reservation.id, Vehicle.id AS vehicle_id, Vehicle.constructeur, Vehicle.modele, Vehicle.nb_places, Client.id as client_id, Client.nom, Client.prenom, Client.email, Client.naissance, debut, fin
+            SELECT Reservation.id, vehicle_id,  client_id,  debut, fin
             FROM Reservation
             INNER JOIN Vehicle ON Reservation.vehicle_id = Vehicle.id
             INNER JOIN Client ON Reservation.client_id = Client.id
@@ -67,16 +67,7 @@ public class ReservationDao {
         }
 	}
 	
-//	public long delete(int id) throws DaoException {
-//		try (Connection connection = ConnectionManager.getConnection();
-//			 PreparedStatement ps = connection.prepareStatement(DELETE_RESERVATION_QUERY)) {
-//			ps.setLong(1, id);
-//			int affectedRows = ps.executeUpdate();
-//			return affectedRows;
-//		} catch (SQLException e) {
-//			throw new DaoException();
-//		}
-//	}
+
 
 
 	public long delete(Reservation reservation) throws DaoException {

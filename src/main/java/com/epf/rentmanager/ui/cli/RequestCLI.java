@@ -188,7 +188,7 @@ public class RequestCLI {
         LocalDate fin = IOUtils.readDate("Date de fin (dd/MM/yyyy): ", true);
 
         try {
-            reservationService.create(new Reservation(0, clientId, vehicleId, debut, fin));
+            reservationService.create(new Reservation(1, clientId, vehicleId, debut, fin));
             IOUtils.print("Réservation créée avec succès.");
         } catch (Exception e) {
             IOUtils.print("Erreur lors de la création de la réservation: " + e.getMessage());
@@ -203,7 +203,7 @@ public class RequestCLI {
                 IOUtils.print(reservation.toString());
             }
         } catch (ServiceException e) {
-            IOUtils.print("Erreur lors de la récupération des véhicules: " + e);
+            IOUtils.print("Erreur lors de la récupération des reservations: " + e.getMessage());
         }
 
     }

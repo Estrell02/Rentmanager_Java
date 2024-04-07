@@ -1,7 +1,6 @@
 package com.epf.rentmanager.servlet;
 
-
-import com.epf.rentmanager.exception.ServiceException;
+import com.epf.rentmanager.service.ClientService;
 import com.epf.rentmanager.service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
@@ -18,6 +17,9 @@ public class ClientDetailsServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     @Autowired
+    private ClientService clientService;
+
+    @Autowired
     private ReservationService reservationService;
 
     @Override
@@ -29,13 +31,13 @@ public class ClientDetailsServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            final long clientId = Long.parseLong(request.getParameter("id"));
-            request.setAttribute("reservation", reservationService.findResaByClientId(clientId));
-            request.setAttribute("nbReservations", reservationService.countByClientId(clientId));
-            request.setAttribute("nbVehicles", reservationService.countVehiclesByClientId(clientId));
-        } catch (ServiceException e) {
-            throw new ServletException();
+            request.setAttribute("client", clientService.findById(
+                    Long.parseLong(request.getParameter("id"))));
+            request.setAttribute("reservations", reservationService.findResaByClientId(
+                    Long.parseLong(request.getParameter("id"))));
+        } catch (Exception e) {
+            throw new ServletException("Erreur lors de la récupération des détails du client", e);
         }
-        this.getServletContext().getRequestDispatcher("/WEB-INF/views/users/edit.jsp").forward(request, response);
+        this.getServletContext().getRequestDispatcher("/WEB-INF/views/users/details.jsp").forward(request, response);
     }
 }

@@ -1,8 +1,11 @@
 package com.epf.rentmanager.servlet;
 
 
+import com.epf.rentmanager.exception.DaoException;
 import com.epf.rentmanager.exception.ServiceException;
+import com.epf.rentmanager.service.ClientService;
 import com.epf.rentmanager.service.ReservationService;
+import com.epf.rentmanager.service.VehicleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
@@ -18,6 +21,10 @@ public class ReservationListServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     @Autowired
     private ReservationService reservationService;
+    @Autowired
+    private ClientService clientService;
+    @Autowired
+    private VehicleService vehicleService;
 
     @Override
     public void init() throws ServletException {
@@ -29,7 +36,9 @@ public class ReservationListServlet extends HttpServlet {
             throws ServletException, IOException {
         try {
             request.setAttribute("reservations", reservationService.findAll());
-        } catch (ServiceException e) {
+            request.setAttribute("clients", clientService.findAll());
+            request.setAttribute("vehicles", vehicleService.findAll());
+        } catch (ServiceException | DaoException e) {
             throw new ServletException();
         }
         this.getServletContext().getRequestDispatcher("/WEB-INF/views/rents/list.jsp").forward(request, response);

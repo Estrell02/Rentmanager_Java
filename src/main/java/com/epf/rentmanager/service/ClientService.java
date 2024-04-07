@@ -49,4 +49,12 @@ public class ClientService {
     public int count() throws ServiceException, DaoException {
         return clientDao.count();
     }
+    public void update(Client client) throws ServiceException {
+
+        try {
+            clientDao.update(client);
+        } catch (DaoException e) {
+            throw new ServiceException();
+        }
+    }
 }

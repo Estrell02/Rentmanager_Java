@@ -32,14 +32,14 @@
                             <table class="table table-striped">
                                 <tr>
                                     <th>ID</th>
-                                    <th>Client</th>
+                                    <th>ID Client</th>
                                     <th>Date de debut</th>
                                     <th>Date de fin</th>
                                 </tr>
                                 <c:forEach items="${reservations}" var="reservation">
                                     <tr>
                                         <td>${reservation.id()}</td>
-                                        <td>${reservation.client().nom()} ${reservation.client().prenom()}</td>
+                                        <td>${reservation.client_id()}</td>
                                         <td>${reservation.debut()}</td>
                                         <td>${reservation.fin()}</td>
                                     </tr>

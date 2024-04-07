@@ -26,7 +26,7 @@ public class ReservationTest {
 
     @Test
     public void create_rent_with_valid_data() throws ServiceException, DaoException {
-        Reservation reservation = new Reservation(1L, 1L, 1L, LocalDate.of(2021, 12, 12), LocalDate.of(2021, 12, 15));
+        Reservation reservation = new Reservation(1L, 1L, 1L, LocalDate.of(2024, 1, 07), LocalDate.of(2024, 1, 15));
         when(reservationDao.create(any(Reservation.class))).thenReturn(1L);
 
         long result = reservationDao.create(reservation);
@@ -36,8 +36,8 @@ public class ReservationTest {
     }
 
     @Test
-    public void find_rent_by_id() throws ServiceException, DaoException {
-        Reservation reservation = new Reservation(1L, 1L, 1L, LocalDate.of(2021, 12, 12), LocalDate.of(2021, 12, 15));
+    public void find_reservation_by_id() throws ServiceException, DaoException {
+        Reservation reservation = new Reservation(1L, 1L, 1L,  LocalDate.of(2024, 1, 07), LocalDate.of(2024, 1, 15));
         when(reservationDao.findById(1L)).thenReturn(reservation);
 
         Reservation result = reservationDao.findById(1L);
@@ -47,8 +47,8 @@ public class ReservationTest {
     }
 
     @Test
-    public void find_all_rents() throws ServiceException, DaoException {
-        Reservation reservation = new Reservation(1L, 1L, 1L, LocalDate.of(2021, 12, 12), LocalDate.of(2021, 12, 15));
+    public void find_all_reservations() throws ServiceException, DaoException {
+        Reservation reservation = new Reservation(1L, 1L, 1L,  LocalDate.of(2024, 1, 07), LocalDate.of(2024, 1, 15));
         when(reservationDao.findAll()).thenReturn(List.of(reservation));
 
         List<Reservation> result = reservationDao.findAll();
@@ -58,8 +58,8 @@ public class ReservationTest {
     }
 
     @Test
-    public void delete_rent() throws ServiceException, DaoException {
-        Reservation reservation = new Reservation(1L, 1L, 1L, LocalDate.of(2021, 12, 12), LocalDate.of(2021, 12, 15));
+    public void delete_reservation() throws ServiceException, DaoException {
+        Reservation reservation = new Reservation(1L, 1L, 1L,  LocalDate.of(2024, 1, 07), LocalDate.of(2024, 1, 15));
         when(reservationDao.delete(reservation)).thenReturn(1L);
 
         Long result = reservationDao.delete(reservation);
@@ -70,7 +70,7 @@ public class ReservationTest {
 
     @Test
     public void count_rent() throws ServiceException, DaoException {
-        Reservation reservation = new Reservation(1L, 1L, 1L, LocalDate.of(2021, 12, 12), LocalDate.of(2021, 12, 15));
+        Reservation reservation = new Reservation(1L, 1L, 1L,  LocalDate.of(2024, 1, 07), LocalDate.of(2024, 1, 15));
         when(reservationDao.count()).thenReturn(List.of(reservation).size());
 
         Number result = reservationService.count();
@@ -80,8 +80,8 @@ public class ReservationTest {
     }
 
     @Test
-    public void find_rent_by_client() throws ServiceException, DaoException {
-        Reservation reservation = new Reservation(1L, 1L, 1L, LocalDate.of(2021, 12, 12), LocalDate.of(2021, 12, 15));
+    public void find_reservation_by_client_id() throws ServiceException, DaoException {
+        Reservation reservation = new Reservation(1L, 1L, 1L,  LocalDate.of(2024, 1, 07), LocalDate.of(2024, 1, 15));
         when(reservationDao.findResaByClientId(1L)).thenReturn(List.of(reservation));
 
         List<Reservation> result = reservationDao.findResaByClientId(1L);
@@ -91,8 +91,8 @@ public class ReservationTest {
     }
 
     @Test
-    public void find_rent_by_vehicle() throws ServiceException, DaoException {
-        Reservation reservation = new Reservation(1L, 1L, 1L, LocalDate.of(2021, 12, 12), LocalDate.of(2021, 12, 15));
+    public void find_reservation_by_vehicle_id() throws ServiceException, DaoException {
+        Reservation reservation = new Reservation(1L, 1L, 1L,  LocalDate.of(2024, 1, 07), LocalDate.of(2024, 1, 15));
         when(reservationDao.findResaByVehicleId(1L)).thenReturn(List.of(reservation));
 
         List<Reservation> result = reservationDao.findResaByVehicleId(1L);

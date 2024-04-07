@@ -29,15 +29,17 @@ public class ReservationDeleteServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String reservationIDstr = request.getPathInfo().substring(1);
-        int reservationID = Integer.parseInt(reservationIDstr);
+//        String reservationIDstr = request.getPathInfo().substring(1);
+        String id =request.getParameter("id");
+        int reservationID = Integer.parseInt(id);
+
         System.out.println(reservationID);
         try {
             reservationService.delete(reservationService.findById(reservationID));
         } catch (ServiceException e) {
             throw new ServletException(e);
         }
-        response.sendRedirect(request.getContextPath() + "/rents/list");
+        response.sendRedirect(request.getContextPath() + "/rents");
     }
 
 

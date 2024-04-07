@@ -26,8 +26,8 @@ public class VehicleTest {
     private VehicleService vehicleService;
 
     @Test
-    public void create_cars_with_valid_data() throws ServiceException, DaoException {
-        Vehicle vehicle = new Vehicle(1, "Nissan", "Plaza", 5);
+    public void create_vehicle_with_valid_data() throws ServiceException, DaoException {
+        Vehicle vehicle = new Vehicle(1, "Toyota", "M343", 5);
         when(vehicleDao.create(any(Vehicle.class))).thenReturn(1L);
 
         long result = vehicleDao.create(vehicle);
@@ -37,8 +37,8 @@ public class VehicleTest {
     }
 
     @Test
-    public void find_cars_by_id() throws ServiceException, DaoException {
-        Vehicle vehicle = new Vehicle(1, "Nissan", "Plaza", 5);
+    public void find_vehicle__by_id() throws ServiceException, DaoException {
+        Vehicle vehicle = new Vehicle(1, "Toyota", "M343", 5);
         when(vehicleDao.findById(1L)).thenReturn(vehicle);
 
         Vehicle result = vehicleDao.findById(1);
@@ -48,8 +48,8 @@ public class VehicleTest {
     }
 
     @Test
-    public void find_all_cars() throws ServiceException, DaoException {
-        Vehicle vehicle = new Vehicle(1, "Nissan", "Plaza", 5);
+    public void find_all_vehicles() throws ServiceException, DaoException {
+        Vehicle vehicle = new Vehicle(1, "Toyota", "M343", 5);
         when(vehicleDao.findAll()).thenReturn(List.of(vehicle));
 
         List<Vehicle> result = vehicleDao.findAll();
@@ -59,8 +59,8 @@ public class VehicleTest {
     }
 
     @Test
-    public void delete_cars() throws ServiceException, DaoException {
-        Vehicle vehicle = new Vehicle(1L, "Nissan", "Plaza", 5);
+    public void delete_vehicle() throws ServiceException, DaoException {
+        Vehicle vehicle = new Vehicle(1L,  "Toyota", "M343", 5);
         when(vehicleDao.delete(vehicle)).thenReturn(1L);
 
         long result = vehicleDao.delete(vehicle);
@@ -70,8 +70,8 @@ public class VehicleTest {
     }
 
     @Test
-    public void count_cars() throws ServiceException, DaoException {
-        Vehicle vehicle = new Vehicle(0, "Nissan", "Plaza", 5);
+    public void count_vehicle() throws ServiceException, DaoException {
+        Vehicle vehicle = new Vehicle(0, "Toyota", "M343", 5);
 
         when(vehicleDao.count()).thenReturn(List.of(vehicle).size());
         Number result = vehicleService.count();
